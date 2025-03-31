@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://b10xsikq10d5e"]
+
+[ext_resource type="PackedScene" uid="uid://3h4selp1v6bt" path="res://单位/战斗机原型/战斗机原型.tscn" id="1_l8svs"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="战斗机原型" parent="." instance=ExtResource("1_l8svs")]
+position = Vector2(388, 347)
+"自身阵营" = 1
+
+[node name="战斗机原型2" parent="." instance=ExtResource("1_l8svs")]
+position = Vector2(469, 517)

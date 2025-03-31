@@ -1,0 +1,126 @@
+[gd_scene load_steps=7 format=3 uid="uid://bxqo7m8pl2gr7"]
+
+[ext_resource type="Script" path="res://脚本/界面/标题/标题相机移动.gd" id="1_s1n7x"]
+[ext_resource type="Texture2D" uid="uid://mmqd1msef44v" path="res://素材/ui/按钮-1.png" id="2_yxtem"]
+[ext_resource type="Texture2D" uid="uid://bu02fasuu8s6a" path="res://素材/ui/按钮按下-1.png" id="3_1tet7"]
+[ext_resource type="Script" path="res://脚本/界面/标题/开始游戏按钮.gd" id="4_rprj5"]
+[ext_resource type="Script" path="res://脚本/界面/标题/设置按钮.gd" id="5_vnw0x"]
+[ext_resource type="Texture2D" uid="uid://hmo24bsacuyf" path="res://素材/背景/2D_starfield_diffraction_spikes_1.png" id="6_tdv56"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("camera")]
+limit_smoothed = true
+script = ExtResource("1_s1n7x")
+camera = NodePath(".")
+start_position = Vector2(-1048, 0)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -250.0
+offset_right = 200.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_stretch_ratio = 0.0
+theme_override_font_sizes/font_size = 75
+text = "BORDER"
+horizontal_alignment = 1
+
+[node name="开始游戏按钮" type="TextureButton" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_right = 100.0
+offset_bottom = 120.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("2_yxtem")
+texture_pressed = ExtResource("3_1tet7")
+script = ExtResource("4_rprj5")
+
+[node name="Label" type="Label" parent="CanvasLayer/开始游戏按钮"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -60.0
+offset_right = 100.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 28
+text = "战役模式"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="设置按钮" type="TextureButton" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = 200.0
+offset_right = 100.0
+offset_bottom = 320.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("2_yxtem")
+texture_pressed = ExtResource("3_1tet7")
+script = ExtResource("5_vnw0x")
+
+[node name="Label" type="Label" parent="CanvasLayer/设置按钮"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -60.0
+offset_right = 100.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 28
+text = "设置"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="背景" type="TextureRect" parent="."]
+offset_left = -2048.0
+offset_top = -2048.0
+texture = ExtResource("6_tdv56")
+
+[node name="背景4" type="TextureRect" parent="."]
+offset_right = 2048.0
+offset_bottom = 2048.0
+texture = ExtResource("6_tdv56")
+
+[node name="背景3" type="TextureRect" parent="."]
+offset_left = -2048.0
+offset_bottom = 2048.0
+texture = ExtResource("6_tdv56")
+
+[node name="背景2" type="TextureRect" parent="."]
+offset_top = -2048.0
+offset_right = 2048.0
+texture = ExtResource("6_tdv56")
+
+[connection signal="button_up" from="CanvasLayer/开始游戏按钮" to="CanvasLayer/开始游戏按钮" method="跳转"]
+[connection signal="button_up" from="CanvasLayer/设置按钮" to="CanvasLayer/设置按钮" method="跳转"]

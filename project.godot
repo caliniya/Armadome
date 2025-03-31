@@ -1,0 +1,54 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Armadome"
+run/main_scene="res://界面/常规/标题.tscn"
+config/features=PackedStringArray("4.3", "Mobile")
+boot_splash/bg_color=Color(0, 0, 0, 1)
+config/icon="res://icon.svg"
+boot_splash/image="res://素材/border_logo.png"
+
+[audio]
+
+general/ios/session_category=3
+
+[debug]
+
+settings/stdout/print_fps=true
+settings/stdout/print_gpu_profile=true
+shapes/collision/shape_color=Color(0, 0.6, 0.701961, 0.145098)
+
+[display]
+
+window/size/viewport_width=2000
+window/size/viewport_height=1000
+window/stretch/mode="viewport"
+window/stretch/scale_mode="integer"
+
+[editor]
+
+export/convert_text_resources_to_binary=false
+
+[input_devices]
+
+pointing/android/enable_long_press_as_right_click=true
+pointing/android/enable_pan_and_scale_gestures=true
+
+[physics]
+
+2d/run_on_separate_thread=true
+2d/default_gravity=0.0
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"

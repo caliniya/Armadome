@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bfgkqdmfayyjv"]
+
+[ext_resource type="Texture2D" uid="uid://b8tkru40l35uo" path="res://素材/ui/HUD/lock.png" id="1_ae6df"]
+
+[node name="Sprite2D" type="Sprite2D"]
+texture = ExtResource("1_ae6df")
+centered = false
+offset = Vector2(0, -256)
