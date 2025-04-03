@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://bqpe80nd13mee"]
+
+[ext_resource type="Texture2D" uid="uid://hmo24bsacuyf" path="res://素材/背景/2D_starfield_diffraction_spikes_1.png" id="1_lx0h7"]
+
+[node name="战场" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
+visible = false
+z_index = -10
+position = Vector2(857, 232)
+texture = ExtResource("1_lx0h7")

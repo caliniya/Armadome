@@ -14,12 +14,17 @@ config/name="Armadome"
 run/main_scene="res://界面/常规/标题.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
 boot_splash/bg_color=Color(0, 0, 0, 1)
-config/icon="res://icon.svg"
-boot_splash/image="res://素材/border_logo.png"
+config/icon="res://素材/logo.png"
+boot_splash/image="res://素材/logo.png"
 
 [audio]
 
 general/ios/session_category=3
+
+[autoload]
+
+InputManager="*res://脚本/插件/输入管理器/InputManager.gd"
+Main="*res://脚本/全局/全局字典.gd"
 
 [debug]
 
@@ -29,10 +34,9 @@ shapes/collision/shape_color=Color(0, 0.6, 0.701961, 0.145098)
 
 [display]
 
-window/size/viewport_width=2000
-window/size/viewport_height=1000
+window/size/viewport_width=1600
+window/size/viewport_height=800
 window/stretch/mode="viewport"
-window/stretch/scale_mode="integer"
 
 [editor]
 
@@ -47,8 +51,3 @@ pointing/android/enable_pan_and_scale_gestures=true
 
 2d/run_on_separate_thread=true
 2d/default_gravity=0.0
-
-[rendering]
-
-renderer/rendering_method="gl_compatibility"
-renderer/rendering_method.mobile="gl_compatibility"

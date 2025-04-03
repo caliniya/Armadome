@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://o4h2psqwh71m"]
+
+[ext_resource type="Script" path="res://脚本/场景/世界/世界.gd" id="1_ihkgy"]
+[ext_resource type="Script" path="res://脚本/场景/世界/摄像机.gd" id="2_3qqy8"]
+[ext_resource type="Texture2D" uid="uid://hmo24bsacuyf" path="res://素材/背景/2D_starfield_diffraction_spikes_1.png" id="2_qdqtj"]
+
+[node name="世界" type="Node2D"]
+script = ExtResource("1_ihkgy")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+script = ExtResource("2_3qqy8")
+"旋转手势" = 0
+
+[node name="UI" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="背景" type="CanvasLayer" parent="."]
+layer = -10
+
+[node name="Sprite2D" type="Sprite2D" parent="背景"]
+position = Vector2(1024, 1024)
+texture = ExtResource("2_qdqtj")
