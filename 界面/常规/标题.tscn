@@ -1,10 +1,10 @@
 [gd_scene load_steps=7 format=3 uid="uid://bxqo7m8pl2gr7"]
 
-[ext_resource type="Script" path="res://脚本/界面/标题/标题相机移动.gd" id="1_s1n7x"]
+[ext_resource type="Script" uid="uid://cutyg5wgs82wn" path="res://脚本/界面/标题/标题相机移动.gd" id="1_s1n7x"]
 [ext_resource type="Texture2D" uid="uid://mmqd1msef44v" path="res://素材/ui/按钮-1.png" id="2_yxtem"]
 [ext_resource type="Texture2D" uid="uid://bu02fasuu8s6a" path="res://素材/ui/按钮按下-1.png" id="3_1tet7"]
-[ext_resource type="Script" path="res://脚本/界面/标题/开始游戏按钮.gd" id="4_rprj5"]
-[ext_resource type="Script" path="res://脚本/界面/标题/设置按钮.gd" id="5_vnw0x"]
+[ext_resource type="Script" uid="uid://cb2osygc6yec3" path="res://脚本/界面/标题/开始游戏按钮.gd" id="4_rprj5"]
+[ext_resource type="Script" uid="uid://b7gkxqpxuebv1" path="res://脚本/界面/标题/设置按钮.gd" id="5_vnw0x"]
 [ext_resource type="Texture2D" uid="uid://hmo24bsacuyf" path="res://素材/背景/2D_starfield_diffraction_spikes_1.png" id="6_tdv56"]
 
 [node name="Node2D" type="Node2D"]

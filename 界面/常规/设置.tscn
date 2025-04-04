@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://nbspkuladchf"]
 
-[ext_resource type="Script" path="res://脚本/界面/标题/标题相机移动.gd" id="1_wh42i"]
+[ext_resource type="Script" uid="uid://cutyg5wgs82wn" path="res://脚本/界面/标题/标题相机移动.gd" id="1_wh42i"]
 [ext_resource type="Texture2D" uid="uid://hmo24bsacuyf" path="res://素材/背景/2D_starfield_diffraction_spikes_1.png" id="6_ncnye"]
 
 [node name="Node2D" type="Node2D"]

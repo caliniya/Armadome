@@ -1,10 +1,10 @@
 [gd_scene load_steps=9 format=3 uid="uid://3h4selp1v6bt"]
 
-[ext_resource type="Script" path="res://脚本/单位/战斗机原型/战斗机原型.gd" id="1_hysqw"]
+[ext_resource type="Script" uid="uid://dh3mwnyfk0gkx" path="res://脚本/单位/战斗机原型/战斗机原型.gd" id="1_hysqw"]
 [ext_resource type="Texture2D" uid="uid://df57thnc7nrm5" path="res://素材/单位/测试1/伽玛.png" id="2_1b2o4"]
-[ext_resource type="Script" path="res://脚本/单位/战斗机原型/战斗机本体.gd" id="2_3rp2k"]
-[ext_resource type="Script" path="res://脚本/单位/战斗机原型/战斗机武器.gd" id="3_yr5se"]
-[ext_resource type="Script" path="res://脚本/单位/战斗机原型/扫描范围.gd" id="5_jpoe6"]
+[ext_resource type="Script" uid="uid://bph87nprclh8w" path="res://脚本/单位/战斗机原型/战斗机本体.gd" id="2_3rp2k"]
+[ext_resource type="Script" uid="uid://ckva1ypx8dhkc" path="res://脚本/单位/战斗机原型/战斗机武器.gd" id="3_yr5se"]
+[ext_resource type="Script" uid="uid://bu2ueo4a8p3lq" path="res://脚本/单位/战斗机原型/扫描范围.gd" id="5_jpoe6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qp4ud"]
 radius = 35.1283

@@ -16,6 +16,9 @@ var 上一次相机位置: Vector2
 var 上一次缩放: Vector2
 
 var 点击坐标 : Vector2
+var 点击世界坐标 : Vector2
+var 当前选中网格 : Vector2i
+
 
 func _process(_delta):
 	var 相机 = get_viewport().get_camera_2d()
@@ -134,3 +137,9 @@ func 绘制虚线(起点: Vector2, 终点: Vector2, color: Color, width: float, 
 func _input(event: InputEvent) -> void:
 	if event is InputEventSingleScreenTap:
 		点击坐标 = event.position
+		点击世界坐标 = get_local_mouse_position()
+		当前选中网格 = 计算网格坐标(点击世界坐标)
+		print(当前选中网格)
+
+func 计算网格坐标(世界坐标 : Vector2) -> Vector2i :
+	return Vector2i(floori(世界坐标.x / 网格单元大小.x),floori(世界坐标.y / 网格单元大小.x))

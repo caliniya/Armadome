@@ -116,6 +116,9 @@ func 获取相机尺寸():
 	return get_viewport().get_visible_rect().size
 
 func _ready():
+	World.初始化世界()
+	World.读取世界()
+	
 	var 临时左边界 = 有效左边界
 	有效左边界 = limit_left
 	limit_left = 临时左边界

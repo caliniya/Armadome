@@ -1,4 +1,2 @@
-res://脚本/插件/输入管理器/InputManager.gd
 res://场景/世界/世界.tscn
-res://脚本/场景/世界/摄像机.gd
-res://脚本/场景/世界/世界.gd
+res://脚本/全局/世界.gd

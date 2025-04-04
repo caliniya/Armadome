@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Armadome"
 run/main_scene="res://界面/常规/标题.tscn"
-config/features=PackedStringArray("4.3", "Mobile")
+config/features=PackedStringArray("4.4", "Mobile")
 boot_splash/bg_color=Color(0, 0, 0, 1)
 config/icon="res://素材/logo.png"
 boot_splash/image="res://素材/logo.png"
@@ -25,11 +25,12 @@ general/ios/session_category=3
 
 InputManager="*res://脚本/插件/输入管理器/InputManager.gd"
 Main="*res://脚本/全局/全局字典.gd"
+World="*res://脚本/全局/世界.gd"
+Core="*res://脚本/全局/全局方法.gd"
 
 [debug]
 
 settings/stdout/print_fps=true
-settings/stdout/print_gpu_profile=true
 shapes/collision/shape_color=Color(0, 0.6, 0.701961, 0.145098)
 
 [display]
@@ -51,3 +52,8 @@ pointing/android/enable_pan_and_scale_gestures=true
 
 2d/run_on_separate_thread=true
 2d/default_gravity=0.0
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"

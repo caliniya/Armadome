@@ -1,3 +1,5 @@
+PopupMenu
+MenuBar
 Sprite2D
 CanvasLayer
 CollisionShape2D
@@ -10,5 +12,3 @@ Node
 Line2D
 TextureRect
 NinePatchRect
-Label
-CollisionPolygon2D
