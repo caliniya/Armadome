@@ -15,9 +15,22 @@ script = ExtResource("2_3qqy8")
 
 [node name="UI" type="CanvasLayer" parent="."]
 
-[node name="星区列表" type="PopupMenu" parent="UI"]
-disable_3d = true
-own_world_3d = true
+[node name="Control" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="MenuButton" type="MenuButton" parent="UI/Control"]
+layout_mode = 0
+offset_right = 250.0
+offset_bottom = 100.0
+mouse_filter = 2
+theme_override_font_sizes/font_size = 50
+button_pressed = true
+action_mode = 1
+text = "星区列表"
+flat = false
+text_overrun_behavior = 1
+autowrap_mode = 3
 script = ExtResource("3_hivsv")
 
 [node name="背景" type="CanvasLayer" parent="."]

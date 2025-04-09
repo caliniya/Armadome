@@ -35,13 +35,17 @@ shapes/collision/shape_color=Color(0, 0.6, 0.701961, 0.145098)
 
 [display]
 
-window/size/viewport_width=1600
+window/size/viewport_width=1800
 window/size/viewport_height=800
 window/stretch/mode="viewport"
 
 [editor]
 
 export/convert_text_resources_to_binary=false
+
+[gui]
+
+theme/default_font_multichannel_signed_distance_field=true
 
 [input_devices]
 

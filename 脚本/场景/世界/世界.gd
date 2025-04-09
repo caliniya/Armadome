@@ -15,9 +15,15 @@ extends Node2D
 var 上一次相机位置: Vector2
 var 上一次缩放: Vector2
 
+var 星区列表节点 : Node
+
 var 点击坐标 : Vector2
 var 点击世界坐标 : Vector2
 var 当前选中网格 : Vector2i
+var 鼠标网格 : Vector2i
+
+func _ready() -> void:
+	星区列表节点 = get_node("UI/Control/MenuButton")
 
 
 func _process(_delta):
@@ -111,6 +117,17 @@ func _draw():
 					网格点半径 / 相机.zoom.x,
 					网格点颜色
 				)
+	
+	if 当前选中网格 !=  null:
+		
+		var 顶点组 = PackedVector2Array()
+		var 颜色 = 主网格颜色
+		颜色.a = 0.4
+		
+		draw_colored_polygon(World.获取网格轮廓(当前选中网格 , 网格单元大小),颜色)
+		draw_polyline(World.获取网格轮廓(鼠标网格 , 网格单元大小),颜色,线条宽度*16)
+
+
 
 func 绘制虚线(起点: Vector2, 终点: Vector2, color: Color, width: float, zoom: Vector2):
 	var 方向 = (终点 - 起点).normalized()
@@ -135,11 +152,19 @@ func 绘制虚线(起点: Vector2, 终点: Vector2, color: Color, width: float, 
 		绘制实线 = not 绘制实线
 
 func _input(event: InputEvent) -> void:
+	if event is InputEventSingleScreenDrag or InputEventSingleScreenTap:
+		鼠标网格 = World.计算星区(get_local_mouse_position() , 网格单元大小) 
+		queue_redraw()
+
 	if event is InputEventSingleScreenTap:
 		点击坐标 = event.position
+		if 点击坐标.x <= 250 and 点击坐标.y <= 100:
+			星区列表节点.按下()
+			print("列表展开")
+			return
 		点击世界坐标 = get_local_mouse_position()
-		当前选中网格 = 计算网格坐标(点击世界坐标)
+		当前选中网格 = World.计算星区(点击世界坐标 , 网格单元大小)
 		print(当前选中网格)
-
-func 计算网格坐标(世界坐标 : Vector2) -> Vector2i :
-	return Vector2i(floori(世界坐标.x / 网格单元大小.x),floori(世界坐标.y / 网格单元大小.x))
+		if World.存在星区(World.计算星区ID(当前选中网格)):
+			print("星区已部署")
+		queue_redraw()
