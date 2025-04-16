@@ -38,15 +38,9 @@ func 读取世界() -> void:
 	for 星区ID in 世界数据["星区"]:
 		星区ID列表.append(星区ID)
 		var 星区数据 = 世界数据["星区"][星区ID]
-		#print("星区id" , 星区ID)
-		#print("已生成" , 星区数据["已生成"])
 
 func 初始化世界() -> void:
-	世界数据文件 = FileAccess.open(世界数据路径 , FileAccess.WRITE)
-	if  世界数据文件 == null:
-		print("无法创建世界数据文件")
-	世界数据文件.store_string(JSON.stringify(初始世界数据))
-	世界数据文件.close()
+	Core.覆写文件(世界数据路径,初始世界数据)
 
 func 计算星区(世界坐标 : Vector2 , 网格单元大小 : Vector2) -> Vector2i :
 	return Vector2i(floori(世界坐标.x / 网格单元大小.x),floori(世界坐标.y / 网格单元大小.x))

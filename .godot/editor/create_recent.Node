@@ -1,3 +1,7 @@
+Sprite2D
+ParallaxLayer
+ParallaxBackground
+Camera2D
 ConfirmationDialog
 PopupMenu
 MenuBar
@@ -9,7 +13,3 @@ ScrollContainer
 BoxContainer
 Container
 Label
-EditorPlugin
-CanvasLayer
-Camera2D
-Sprite2D

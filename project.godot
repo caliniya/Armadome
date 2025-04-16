@@ -15,6 +15,7 @@ run/main_scene="res://界面/常规/标题.tscn"
 config/features=PackedStringArray("4.4", "Mobile")
 boot_splash/bg_color=Color(0, 0, 0, 1)
 config/icon="res://素材/logo.png"
+boot_splash/fullsize=false
 boot_splash/image="res://素材/logo.png"
 
 [audio]
@@ -37,6 +38,9 @@ shapes/collision/shape_color=Color(0, 0.6, 0.701961, 0.145098)
 
 window/size/viewport_width=1800
 window/size/viewport_height=800
+window/size/borderless=true
+window/size/always_on_top=true
+window/size/extend_to_title=true
 window/stretch/mode="viewport"
 
 [editor]
@@ -45,7 +49,12 @@ export/convert_text_resources_to_binary=false
 
 [gui]
 
+theme/custom_font="uid://c3y3xd1nd6w6t"
+theme/default_font_antialiasing=2
+theme/default_font_subpixel_positioning=2
 theme/default_font_multichannel_signed_distance_field=true
+theme/default_font_generate_mipmaps=true
+theme/lcd_subpixel_layout=3
 
 [input_devices]
 

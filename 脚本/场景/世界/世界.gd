@@ -165,10 +165,6 @@ func _input(event: InputEvent) -> void:
 	# 点击事件处理
 	if event is InputEventSingleScreenTap:
 		点击坐标 = event.position
-		# 菜单按钮区域检测（左上角250x100区域）
-		if 点击坐标.x <= 250 and 点击坐标.y <= 100:
-			星区列表节点.按下()
-			return
 		
 		# 网格选择逻辑
 		点击世界坐标 = get_local_mouse_position()

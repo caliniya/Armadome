@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://cudlaj58g6yqu"]
+
+[ext_resource type="Script" uid="uid://c40gcve0ftl1i" path="res://脚本/场景/星区/星区.gd" id="1_ta2re"]
+[ext_resource type="Script" uid="uid://bwiqsitcjk3eg" path="res://脚本/场景/星区/摄像机.gd" id="2_022bt"]
+[ext_resource type="FontFile" uid="uid://c3y3xd1nd6w6t" path="res://素材/字体/SourceHanSansSC-Normal.otf" id="2_j018m"]
+[ext_resource type="Texture2D" uid="uid://hmo24bsacuyf" path="res://素材/背景/2D_starfield_diffraction_spikes_1.png" id="3_jbs03"]
+
+[node name="星区" type="Node2D"]
+script = ExtResource("1_ta2re")
+"显示网格坐标" = true
+"坐标字体大小" = 30
+"坐标字体" = ExtResource("2_j018m")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+limit_left = -1500
+limit_top = -1500
+limit_right = 1500
+limit_bottom = 1500
+script = ExtResource("2_022bt")
+"旋转手势" = 0
+
+[node name="视差" type="Node2D" parent="."]
+z_index = -10
+
+[node name="视差层" type="Parallax2D" parent="视差"]
+scroll_scale = Vector2(0.5, 0.5)
+repeat_size = Vector2(2048, 2048)
+
+[node name="Sprite2D" type="Sprite2D" parent="视差/视差层"]
+position = Vector2(1024, 1024)
+texture = ExtResource("3_jbs03")

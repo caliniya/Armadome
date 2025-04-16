@@ -1,0 +1,34 @@
+[gd_scene load_steps=3 format=3 uid="uid://8sw2jrif3utd"]
+
+[ext_resource type="Texture2D" uid="uid://hmo24bsacuyf" path="res://素材/背景/2D_starfield_diffraction_spikes_1.png" id="1_8ly6x"]
+[ext_resource type="Script" uid="uid://3ebxdxxaud3q" path="res://脚本/界面/预加载/世界预加载/label.gd" id="2_3bkn6"]
+
+[node name="世界预加载" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(1000, 500)
+texture = ExtResource("1_8ly6x")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer2"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -180.0
+offset_top = -44.0
+offset_right = 180.0
+offset_bottom = 44.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 60
+text = "正在读取世界"
+uppercase = true
+script = ExtResource("2_3bkn6")

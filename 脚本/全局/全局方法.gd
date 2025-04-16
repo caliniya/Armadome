@@ -28,3 +28,16 @@ func 从实例切换场景(场景实例: Node) -> void:#by 鱼雷
 	# 重新赋值 当前场景, 否则下一次调用可能出错.
 	场景树.current_scene = 场景实例
 	print("切换到了新场景: "+场景树.current_scene.to_string())
+
+func 覆写文件(路径 : String , 内容 : Variant , 覆写类型 : String = "json") -> void:
+	var 父目录 = 路径.get_base_dir()
+	if not DirAccess.dir_exists_absolute(父目录):
+		DirAccess.make_dir_recursive_absolute(父目录)
+	var 文件句柄 : FileAccess = FileAccess.open(路径 , FileAccess.WRITE)
+	if 文件句柄 == null:
+		print("覆写文件失败，无法创建文件？路径:" + 路径)
+		print("错误:" + str(FileAccess.get_open_error()))
+		return
+	if 覆写类型 == "json":
+		文件句柄.store_string(JSON.stringify(内容))
+		文件句柄.close()#TODO 暂时不考虑其他类型
