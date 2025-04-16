@@ -11,7 +11,7 @@ func _ready() -> void:
 	tween.set_loops()
 	World.读取世界()
 	World.生成唯一ID表()
-	print(World.星区唯一ID表)
-	await get_tree().create_timer(2.0).timeout
+	print(World.星区唯一ID表)	
 	var 场景 = preload("res://场景/世界/世界.tscn").instantiate()
+	await get_tree().create_timer(4.0).timeout
 	Core.从实例切换场景(场景)

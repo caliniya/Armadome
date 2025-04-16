@@ -1,5 +1,7 @@
 extends MenuButton
 
+var 展开 : bool = true
+
 func _ready() -> void:
 	get_popup().hide_on_item_selection = false
 	for 星区 in World.星区ID列表:
@@ -8,8 +10,9 @@ func _ready() -> void:
 		get_popup().add_theme_font_size_override("font_size" , 40)
 
 func 按下() -> void:
-	if button_pressed == false:
-		set_process(true)
+	展开 = !展开
+	if 展开 == false:
+		set_pressed(true)
 		show_popup()
-	print(button_pressed)
-	set_process(false)
+		return
+	set_pressed(false)
