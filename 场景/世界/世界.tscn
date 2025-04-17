@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cvxd3kcyrcaos" path="res://脚本/场景/世界/世界.gd" id="1_ihkgy"]
 [ext_resource type="Script" uid="uid://dau6iipcbv7dt" path="res://脚本/场景/世界/摄像机.gd" id="2_3qqy8"]
-[ext_resource type="FontFile" uid="uid://c3y3xd1nd6w6t" path="res://素材/字体/SourceHanSansSC-Normal.otf" id="2_nv0i6"]
+[ext_resource type="FontFile" uid="uid://cpikboclyul3m" path="res://素材/字体/SourceHanSansSC-Normal.otf" id="2_nv0i6"]
 [ext_resource type="Texture2D" uid="uid://hmo24bsacuyf" path="res://素材/背景/2D_starfield_diffraction_spikes_1.png" id="2_qdqtj"]
 [ext_resource type="Script" uid="uid://cuf3wlkvo7smu" path="res://脚本/场景/世界/星区列表.gd" id="3_hivsv"]
 [ext_resource type="Script" uid="uid://d1xjvjo4ohslt" path="res://脚本/场景/世界/UI.gd" id="3_r8f20"]

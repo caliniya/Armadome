@@ -1,13 +1,12 @@
 extends Node
 
 var 世界数据路径 : String = "res://存储/世界/星区列表.json"
-var 世界数据文件
-
-var 世界数据 : Dictionary
+var 星区文件夹路径 : String = "res://存储/世界/星区/"
+var 单位列表路径 :String = "res;//存储/世界/单位列表.json"
 
 var 初始世界数据 : Dictionary = {
 	"星区" : {
-		"老家" : {
+		"基地" : {
 			"已生成" : true,
 			"基地" : true,
 			"坐标" : [0 , 0]
@@ -25,7 +24,25 @@ var 初始世界数据 : Dictionary = {
 		}
 	}
 
-var 星区ID列表 : Array
+var 空星区世界 : Dictionary = {
+	"空间站" : {
+		"类型" : "默认",
+		"坐标" : [0 ,0],
+	},
+	"建筑" : [
+		
+	],
+	"单位" : [
+		
+	]
+}
+
+var 初始单位列表 : Array =[
+	{"00000000" : "风吹"}
+]
+
+var 世界数据 : Dictionary
+var 星区列表 : Array
 var 星区唯一ID表 : Dictionary
 var 星区唯一ID表反向映射 : Dictionary
 
@@ -33,17 +50,20 @@ func _ready() -> void:
 	世界数据路径 = "res://存储/世界/星区列表.json"
 
 func 读取世界() -> void:
-	if FileAccess.file_exists(世界数据路径) :
-		世界数据 = Core.读取文件(世界数据路径 , "json")
-	for 星区ID in 世界数据["星区"]:
-		星区ID列表.append(星区ID)
-		var 星区数据 = 世界数据["星区"][星区ID]
+	生成星区列表()
+	生成唯一ID表()
 
 func 初始化世界() -> void:
+	Core.删除非空文件夹( "res://存储/世界/")
 	Core.覆写文件(世界数据路径,初始世界数据)
+	生成星区列表()
+	生成唯一ID表()
+	初始化星区文件()
+	初始化单位列表文件()
+
 
 func 计算星区(世界坐标 : Vector2 , 网格单元大小 : Vector2) -> Vector2i :
-	return Vector2i(floori(世界坐标.x / 网格单元大小.x),floori(世界坐标.y / 网格单元大小.x))
+	return Vector2i(floori(世界坐标.x / 网格单元大小.x),floori(世界坐标.y / 网格单元大小.y))
 	
 func 计算星区ID(星区坐标 : Vector2i) -> String:
 	return str(计算唯一ID(星区坐标.x , 星区坐标.y))
@@ -80,7 +100,6 @@ func 反向映射字典(字典 : Dictionary) -> Dictionary:
 	for 键 in 字典 :
 		反向字典[字典[键]] = 键
 	return 反向字典
-	
 
 func 计算唯一ID(x : int , y : int) -> int:
 	var k1
@@ -95,3 +114,17 @@ func 计算唯一ID(x : int , y : int) -> int:
 		k2 = (y * -2) - 1#归一化，将所有整数转换为自然数数
 	return (((k1 + k2) * (k1 + k2 + 1)) / 2) + k2
 	#康托尔配对函数
+
+func 生成星区列表() -> void:
+	if FileAccess.file_exists(世界数据路径) :
+		世界数据 = Core.读取文件(世界数据路径 , "json")
+	for 星区ID in 世界数据["星区"]:
+		星区列表.append(星区ID)
+		var 星区数据 = 世界数据["星区"][星区ID]
+
+func 初始化星区文件() -> void:
+	for 星区 in 星区列表:
+		Core.覆写文件(星区文件夹路径 + 星区 + ".json" , 空星区世界)
+
+func 初始化单位列表文件() -> void:
+	Core.覆写文件(单位列表路径 , 初始单位列表)

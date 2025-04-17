@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c40gcve0ftl1i" path="res://脚本/场景/星区/星区.gd" id="1_ta2re"]
 [ext_resource type="Script" uid="uid://bwiqsitcjk3eg" path="res://脚本/场景/星区/摄像机.gd" id="2_022bt"]
-[ext_resource type="FontFile" uid="uid://c3y3xd1nd6w6t" path="res://素材/字体/SourceHanSansSC-Normal.otf" id="2_j018m"]
+[ext_resource type="FontFile" uid="uid://cpikboclyul3m" path="res://素材/字体/SourceHanSansSC-Normal.otf" id="2_j018m"]
 [ext_resource type="Texture2D" uid="uid://hmo24bsacuyf" path="res://素材/背景/2D_starfield_diffraction_spikes_1.png" id="3_jbs03"]
 
 [node name="星区" type="Node2D"]

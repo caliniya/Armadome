@@ -41,3 +41,46 @@ func 覆写文件(路径 : String , 内容 : Variant , 覆写类型 : String = "
 	if 覆写类型 == "json":
 		文件句柄.store_string(JSON.stringify(内容))
 		文件句柄.close()#TODO 暂时不考虑其他类型
+
+func 删除非空文件夹(路径: String) -> bool:
+	var 目录 = DirAccess.open(路径)
+	if 目录 == null:
+		print("无法打开目录：", 路径)
+		return false
+								
+	if 目录.list_dir_begin() != OK:
+		print("目录遍历初始化失败：", 路径)
+		return false
+
+	var 文件名 = 目录.get_next()
+	while 文件名 != "":
+		if 文件名 in [".", ".."]:
+			文件名 = 目录.get_next()
+			continue
+			
+		var 完整路径 = 路径.path_join(文件名)
+		
+		if 目录.current_is_dir():
+			if not 删除非空文件夹(完整路径):
+				目录.list_dir_end()
+				return false
+		else:
+		# 使用当前目录实例删除文件，避免路径错误
+			if 目录.remove(文件名) != OK:
+				print("文件删除失败：", 完整路径)
+				目录.list_dir_end()
+				return false
+		文件名 = 目录.get_next()
+		
+	目录.list_dir_end()  # 结束遍历，释放资源
+	# 通过父目录删除当前目录
+	var 父目录路径 = 路径.get_base_dir()
+	var 当前目录名 = 路径.get_file()
+	var 父目录 = DirAccess.open(父目录路径)
+	if 父目录 == null:
+		print("打开" +父目录路径 + "出错")
+		return false
+	if 父目录.remove(当前目录名) != OK:
+		print("删除" + 当前目录名 + "出错")
+		return false
+	return true
