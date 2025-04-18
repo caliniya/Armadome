@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://bqeqcktln3qng"]
+
+[ext_resource type="Texture2D" uid="uid://ccuiphnbyttur" path="res://素材/实体/武器/一类/微风.png" id="1_r8o6p"]
+[ext_resource type="Script" uid="uid://mv8cwmpy1ve1" path="res://脚本/实体/武器/一类/微风.gd" id="1_tr4gg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tr4gg"]
+radius = 200.0
+
+[node name="微风" type="Area2D"]
+monitorable = false
+script = ExtResource("1_tr4gg")
+
+[node name="射程" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_tr4gg")
+
+[node name="贴图" type="Sprite2D" parent="."]
+texture = ExtResource("1_r8o6p")

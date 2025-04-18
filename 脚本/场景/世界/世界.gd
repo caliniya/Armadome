@@ -129,8 +129,8 @@ func _draw():
 	if 当前选中网格 != null:
 		var 颜色 = 主网格颜色.clamp()
 		颜色.a = 0.4
-		draw_colored_polygon(World.获取网格轮廓(当前选中网格, 网格单元大小), 颜色)
-		draw_polyline(World.获取网格轮廓(鼠标网格, 网格单元大小), 颜色, 线条宽度*16)
+		draw_colored_polygon(世界.获取网格轮廓(当前选中网格, 网格单元大小), 颜色)
+		draw_polyline(世界.获取网格轮廓(鼠标网格, 网格单元大小), 颜色, 线条宽度*16)
 
 # ================== 虚线绘制函数 ==================
 func 绘制虚线(起点: Vector2, 终点: Vector2, color: Color, width: float, zoom: Vector2):
@@ -159,7 +159,7 @@ func 绘制虚线(起点: Vector2, 终点: Vector2, color: Color, width: float, 
 func _input(event: InputEvent) -> void:
 	# 鼠标交互处理
 	if event is InputEventSingleScreenDrag or InputEventSingleScreenTap:
-		鼠标网格 = World.计算星区(get_local_mouse_position(), 网格单元大小) 
+		鼠标网格 = 世界.计算星区(get_local_mouse_position(), 网格单元大小) 
 		queue_redraw()
 
 	# 点击事件处理
@@ -168,11 +168,11 @@ func _input(event: InputEvent) -> void:
 		
 		# 网格选择逻辑
 		点击世界坐标 = get_local_mouse_position()
-		当前选中网格 = World.计算星区(点击世界坐标, 网格单元大小)
+		当前选中网格 = 世界.计算星区(点击世界坐标, 网格单元大小)
 		print("选中网格：", 当前选中网格)
 		
 		# 星区状态检查
-		if World.存在星区(World.计算星区ID(当前选中网格)):
+		if 世界.存在星区(世界.计算星区ID(当前选中网格)):
 			print("星区已部署")
 		else:
 			print("星区未部署")

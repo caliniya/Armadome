@@ -16,10 +16,13 @@ extends Node2D
 @export var 网格点半径 := 4.0                 # 网格点屏幕半径（单位：像素）
 
 # ================== 网格坐标显示参数 ==================
-@export var 显示网格坐标 := false             # 是否显示网格坐标文本
+@export var 显示网格坐标 := true              # 是否显示网格坐标文本
 @export var 坐标字体颜色 := Color.WHITE       # 坐标文本颜色
-@export var 坐标字体大小 := 12               # 基础字体大小（会根据缩放自动调整）
+@export var 坐标字体大小 := 30               # 基础字体大小（会根据缩放自动调整）
 @export var 坐标字体 : Font                 # 可选自定义字体（留空使用引擎默认字体）
+
+var ID显示节点 : Node 
+var 星区ID : String
 
 # ================== 运行时变量 ==================
 var 上一次相机位置: Vector2
@@ -32,7 +35,7 @@ var 鼠标网格 : Vector2i
 
 # ================== 引擎回调 ==================
 func _ready() -> void:
-	pass
+	ID显示节点 = get_node("UI/Control/Label")
 
 func _process(_delta):
 	# 相机变化检测（触发重绘）
@@ -129,8 +132,8 @@ func _draw():
 	if 当前选中网格 != null:
 		var 颜色 = 主网格颜色.clamp()
 		颜色.a = 0.4
-		draw_colored_polygon(World.获取网格轮廓(当前选中网格, 网格单元大小), 颜色)
-		draw_polyline(World.获取网格轮廓(鼠标网格, 网格单元大小), 颜色, 线条宽度*16)
+		draw_colored_polygon(世界.获取网格轮廓(当前选中网格, 网格单元大小), 颜色)
+		draw_polyline(世界.获取网格轮廓(鼠标网格, 网格单元大小), 颜色, 线条宽度*16)
 
 # ================== 虚线绘制函数 ==================
 func 绘制虚线(起点: Vector2, 终点: Vector2, color: Color, width: float, zoom: Vector2):
@@ -159,7 +162,7 @@ func 绘制虚线(起点: Vector2, 终点: Vector2, color: Color, width: float, 
 func _input(event: InputEvent) -> void:
 	# 鼠标交互处理
 	if event is InputEventSingleScreenDrag or InputEventSingleScreenTap:
-		鼠标网格 = World.计算星区(get_local_mouse_position(), 网格单元大小) 
+		鼠标网格 = 世界.计算星区(get_local_mouse_position(), 网格单元大小) 
 		queue_redraw()
 
 	# 点击事件处理
@@ -168,5 +171,5 @@ func _input(event: InputEvent) -> void:
 		
 		# 网格选择逻辑
 		点击世界坐标 = get_local_mouse_position()
-		当前选中网格 = World.计算星区(点击世界坐标, 网格单元大小)
+		当前选中网格 = 世界.计算星区(点击世界坐标, 网格单元大小)
 		print("选中网格：", 当前选中网格)

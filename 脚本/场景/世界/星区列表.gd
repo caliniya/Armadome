@@ -4,8 +4,8 @@ var 展开 : bool = true
 
 func _ready() -> void:
 	get_popup().hide_on_item_selection = false
-	for 星区 in World.星区列表:
-		var ID = World.星区唯一ID表.get(星区)
+	for 星区 in 世界.星区列表:
+		var ID = 世界.星区唯一ID表.get(星区)
 		get_popup().add_item("星区" + str(ID) , ID)
 		get_popup().add_theme_font_size_override("font_size" , 40)
 

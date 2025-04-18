@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://8sw2jrif3utd"]
+[gd_scene load_steps=5 format=3 uid="uid://8sw2jrif3utd"]
 
 [ext_resource type="Texture2D" uid="uid://hmo24bsacuyf" path="res://素材/背景/2D_starfield_diffraction_spikes_1.png" id="1_8ly6x"]
 [ext_resource type="Script" uid="uid://3ebxdxxaud3q" path="res://脚本/界面/预加载/世界预加载/label.gd" id="2_3bkn6"]
 [ext_resource type="FontFile" uid="uid://cpikboclyul3m" path="res://素材/字体/SourceHanSansSC-Normal.otf" id="2_wubee"]
+[ext_resource type="PackedScene" uid="uid://c8hhy17sohweu" path="res://场景/扩展/相机/相机.tscn" id="4_xwy3k"]
 
 [node name="世界预加载" type="Node2D"]
 
@@ -12,8 +13,6 @@ layer = -1
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
 position = Vector2(1000, 500)
 texture = ExtResource("1_8ly6x")
-
-[node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]
 
@@ -34,3 +33,6 @@ theme_override_font_sizes/font_size = 60
 text = "正在读取世界"
 uppercase = true
 script = ExtResource("2_3bkn6")
+
+[node name="相机" parent="." instance=ExtResource("4_xwy3k")]
+"移动手势" = 0

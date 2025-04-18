@@ -1,11 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://b10xsikq10d5e"]
+[gd_scene load_steps=3 format=3 uid="uid://b10xsikq10d5e"]
 
-[ext_resource type="PackedScene" uid="uid://4wk8gylmg4rh" path="res://单位/战舰/风吹/风吹.tscn" id="1_vw0g6"]
+[ext_resource type="PackedScene" uid="uid://4wk8gylmg4rh" path="res://实体/单位/战舰/风吹/风吹.tscn" id="1_vw0g6"]
+[ext_resource type="PackedScene" uid="uid://c8hhy17sohweu" path="res://场景/扩展/相机/相机.tscn" id="2_qxylp"]
 
 [node name="Node2D" type="Node2D"]
 
-[node name="Node2D" parent="." instance=ExtResource("1_vw0g6")]
-position = Vector2(-1319, 506)
+[node name="风吹" parent="." instance=ExtResource("1_vw0g6")]
+"自身阵营" = "红队"
 
-[node name="Node2D2" parent="." instance=ExtResource("1_vw0g6")]
-position = Vector2(1276, 742)
+[node name="相机" parent="." instance=ExtResource("2_qxylp")]
+
+[node name="风吹2" parent="." instance=ExtResource("1_vw0g6")]
+position = Vector2(136, 148)

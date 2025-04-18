@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://4wk8gylmg4rh"]
+
+[ext_resource type="Script" uid="uid://bnisiay44fjdf" path="res://脚本/实体/单位/战舰/风吹/风吹.gd" id="1_txoy0"]
+[ext_resource type="Texture2D" uid="uid://dkrpe70fguycb" path="res://素材/实体/单位/风吹/风吹.png" id="2_yp748"]
+
+[sub_resource type="GDScript" id="GDScript_q4r22"]
+script/source = "extends Area2D
+
+var 根节点 : Node
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	根节点 = get_tree().current_scene
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_palma"]
+radius = 40.0
+height = 140.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ytvs4"]
+radius = 300.0
+
+[node name="风吹" type="Node2D"]
+script = ExtResource("1_txoy0")
+
+[node name="本体" type="Area2D" parent="."]
+monitoring = false
+script = SubResource("GDScript_q4r22")
+
+[node name="本体形状" type="CollisionShape2D" parent="本体"]
+shape = SubResource("CapsuleShape2D_palma")
+
+[node name="贴图" type="Sprite2D" parent="本体"]
+texture = ExtResource("2_yp748")
+
+[node name="扫描范围" type="Area2D" parent="本体"]
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="本体/扫描范围"]
+shape = SubResource("CircleShape2D_ytvs4")

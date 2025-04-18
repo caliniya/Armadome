@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c8hhy17sohweu"]
+
+[ext_resource type="Script" uid="uid://cvvodc10iax00" path="res://脚本/扩展/相机/相机.gd" id="1_k3m54"]
+
+[node name="相机" type="Camera2D"]
+script = ExtResource("1_k3m54")
