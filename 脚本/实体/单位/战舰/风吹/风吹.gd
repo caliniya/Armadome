@@ -1,1 +1,1 @@
-extends 战舰
+extends 战舰原型

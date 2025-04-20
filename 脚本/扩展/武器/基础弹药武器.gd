@@ -1,25 +1,22 @@
 class_name 基础弹药武器 
 extends Area2D
 
-var 武器级别 : int
-var 弹仓容量 : float
-var 射击耗弹 : float
-var 旋转速度 : float
-var 不精准度 : float
-var 有效射程 : float
-var 射击耗能 : float
-var 射击间隔 : float
-var 索敌距离 : float
-var 装填速度 : float
-var 电容容量 : float
-var 放电效率 : float
-var 充能速率 : float
-var 短路耗能 : float
-var 离线延迟 : float
-var 电场强度 : float
-
-var 镜像武器 : bool
-var 镜像武器实例 : 基础弹药武器 = null
+var 武器级别 : int = 1
+var 弹仓容量 : float = 10.0
+var 射击耗弹 : float = 1.0
+var 旋转速度 : float = 120.0
+var 不精准度 : float = 1.0
+var 有效射程 : float = 300.0
+var 射击耗能 : float = 10.0
+var 射击间隔 : float = 1.0
+var 索敌距离 : float = 350.0
+var 装填速度 : float = 1.0
+var 电容容量 : float = 100.0
+var 放电效率 : float = 0.8
+var 充能速率 : float = 15.0
+var 短路耗能 : float = 50.0
+var 离线延迟 : float = 4.0
+var 电场强度 : float =1.0
 
 var 武器贴图路径 : String
 var 武器主贴图 : Script
