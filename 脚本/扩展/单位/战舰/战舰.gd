@@ -33,6 +33,10 @@ var 减速度 : float
 var 转向速度 : float
 var 负重速度 : float
 
+var 当前护盾容量 : float
+var 当前装甲容量 : float
+var 当前核心容量 : float
+
 var 本体 : Node
 
 var 移动目标方向
@@ -52,10 +56,10 @@ func 初始化战舰() -> void:
 		变量.红队攻击对象组.append(self)
 
 func _ready() -> void:
-	print(自身阵营)
 	本体 = get_node("本体")
 	选中 = true
-	载重更新()
+	单位.载重更新(self)
+	单位.装载货物("测试货物一号" , self)
 
 func _process(delta: float) -> void:
 	pass
@@ -63,27 +67,7 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	向目标移动(delta)	
 
-func 死亡检查() -> void:
-	if 核心容量 <= 0:
-		self.queue_free()
 
-func 装载货物(货物ID : String) ->void:
-	if 货仓容量 - 变量.货物体积[货物ID] - 货仓装载体积 >= 0 :
-		货仓装载体积 += 变量.货物体积[货物ID]
-		货仓装载质量 += 变量.货物质量[货物ID]
-		货仓货物.append(货物ID)
-	else :
-		print("无法装载货物-货仓容量不足")
-	载重更新()
-
-func  卸载货物(货物ID : String) ->void:
-	if 货物ID in 货仓货物:
-		货仓装载体积 -= 变量.货物体积[货物ID]
-		货仓装载质量 -= 变量.货物质量[货物ID]
-		货仓货物.erase(货物ID)
-	else :
-		print("卸载货物出错，不存在指定货物")
-	载重更新()
 
 func 向目标移动(帧差值 : float) -> void:
 	移动目标方向 = ((移动目标坐标 - global_position).normalized()).angle() + PI / 2
@@ -94,9 +78,3 @@ func 向目标移动(帧差值 : float) -> void:
 func _input(event: InputEvent) -> void:
 	if event is InputEventSingleScreenTap and 选中 == true :
 		移动目标坐标 = get_global_mouse_position()
-
-func 载重更新() -> void:
-	加速度 = (标准加速度 * (自身质量/(自身质量 + 货仓装载质量)))
-	减速度 = (标准减速度 * (自身质量/(自身质量 + 货仓装载质量)))
-	转向速度 = (标准转向速度 * (自身质量/(自身质量 + 货仓装载质量)))
-	负重速度 = (最大速度 * (自身质量/(自身质量 + 货仓装载质量)))
