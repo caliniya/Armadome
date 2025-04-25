@@ -52,6 +52,11 @@ window/stretch/mode="viewport"
 
 export/convert_text_resources_to_binary=false
 
+[global_group]
+
+"蓝队单位"=""
+"红队单位"=""
+
 [gui]
 
 theme/custom_font="uid://c3y3xd1nd6w6t"

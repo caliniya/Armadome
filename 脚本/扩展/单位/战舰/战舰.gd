@@ -49,12 +49,6 @@ var 选中 : bool
 @export var 货仓装载质量 : float = 0
 @export var 货仓货物 : Array = []
 
-func 初始化战舰() -> void:
-	if self.自身阵营 == "蓝队":
-		变量.蓝队攻击对象组.append(self)
-	elif self.自身阵营 == "红队":
-		变量.红队攻击对象组.append(self)
-
 func _ready() -> void:
 	本体 = get_node("本体")
 	选中 = true
@@ -66,8 +60,6 @@ func _process(delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	向目标移动(delta)	
-
-
 
 func 向目标移动(帧差值 : float) -> void:
 	移动目标方向 = ((移动目标坐标 - global_position).normalized()).angle() + PI / 2

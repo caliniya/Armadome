@@ -3,7 +3,7 @@ extends Label
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	世界.初始化世界()
+	世界.重置世界()
 	var tween = create_tween()
 	self.modulate.a = 0.0
 	tween.tween_property(self ,"modulate:a" , 0.0 , 1.0).set_delay(0.5)

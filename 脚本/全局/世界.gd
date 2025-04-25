@@ -2,7 +2,10 @@ extends Node
 
 var 世界数据路径 : String = "res://存储/世界/星区列表.json"
 var 星区文件夹路径 : String = "res://存储/世界/星区/"
-var 单位列表路径 :String = "res;//存储/世界/单位列表.json"
+var 单位ID表 : Dictionary
+var 单位ID表路径 : String = "res://存储/世界/单位ID表.json"
+var 单位信息路径 : String = "res://存储/世界/单位/星区"
+var 跳跃单位信息路径 : String = "res://存储/世界/单位/跳跃"
 
 var 初始世界数据 : Dictionary = {
 	"星区" : {
@@ -37,10 +40,6 @@ var 空星区世界 : Dictionary = {
 	]
 }
 
-var 初始单位列表 : Array =[
-	{"00000000" : "风吹"}
-]
-
 var 世界数据 : Dictionary
 var 星区列表 : Array
 var 星区唯一ID表 : Dictionary
@@ -53,13 +52,12 @@ func 读取世界() -> void:
 	生成星区列表()
 	生成唯一ID表()
 
-func 初始化世界() -> void:
-	方法.删除非空文件夹( "res://存储/世界/")
+func 重置世界() -> void:
+	方法.删除非空文件夹( "res://存储/世界")
 	方法.覆写文件(世界数据路径,初始世界数据)
 	生成星区列表()
 	生成唯一ID表()
-	初始化星区文件()
-	初始化单位列表文件()
+	重置星区文件()
 
 
 func 计算星区(世界坐标 : Vector2 , 网格单元大小 : Vector2) -> Vector2i :
@@ -122,9 +120,10 @@ func 生成星区列表() -> void:
 		星区列表.append(星区ID)
 		var 星区数据 = 世界数据["星区"][星区ID]
 
-func 初始化星区文件() -> void:
+func 重置星区文件() -> void:
 	for 星区 in 星区列表:
 		方法.覆写文件(星区文件夹路径 + 星区 + ".json" , 空星区世界)
 
-func 初始化单位列表文件() -> void:
-	方法.覆写文件(单位列表路径 , 初始单位列表)
+func 重置单位数据() -> void:
+	方法.删除非空文件夹(单位信息路径)
+	方法.删除非空文件夹(跳跃单位信息路径)
