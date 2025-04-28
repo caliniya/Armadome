@@ -2,7 +2,7 @@ class_name 战舰原型
 extends Node2D
 
 @export var 核心容量 : float = 1000
-@export var 装甲容量 : float = 1000
+@export var 护甲容量 : float = 1000
 @export var 护甲值 : float = 20
 @export var 护盾容量 : float = 1000
 @export var 最大速度 : float =4
@@ -53,13 +53,9 @@ func _ready() -> void:
 	本体 = get_node("本体")
 	选中 = true
 	单位.载重更新(self)
-	单位.装载货物("测试货物一号" , self)
 
 func _process(delta: float) -> void:
-	pass
-
-func _physics_process(delta: float) -> void:
-	向目标移动(delta)	
+	向目标移动(delta)
 
 func 向目标移动(帧差值 : float) -> void:
 	移动目标方向 = ((移动目标坐标 - global_position).normalized()).angle() + PI / 2
@@ -70,3 +66,10 @@ func 向目标移动(帧差值 : float) -> void:
 func _input(event: InputEvent) -> void:
 	if event is InputEventSingleScreenTap and 选中 == true :
 		移动目标坐标 = get_global_mouse_position()
+
+func 选中改变() -> void:
+	if self.选中 == true:
+		self.选中 = false
+	elif self.选中 == false:
+		self.选中 = true
+	

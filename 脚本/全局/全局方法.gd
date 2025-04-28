@@ -4,7 +4,7 @@ func 读取文件(文件路径 : String , 类型 : String) -> Variant:
 	var 文件句柄 : FileAccess
 	文件句柄 = FileAccess.open(文件路径,FileAccess.READ)
 	if not 文件句柄 :
-		return "读取文件出错"
+		return "读取文件出错,无法打开文件"
 	var 读取缓存 = 文件句柄.get_as_text()
 	文件句柄.close()
 	if 类型 == "json":
@@ -45,7 +45,7 @@ func 覆写文件(路径 : String , 内容 : Variant , 覆写类型 : String = "
 func 删除非空文件夹(路径: String) -> bool:
 	var 目录 = DirAccess.open(路径)
 	if 目录 == null:
-		print("无法打开目录：", 路径)
+		print("删除文件夹失败，无法打开目录：", 路径)
 		return false
 								
 	if 目录.list_dir_begin() != OK:
