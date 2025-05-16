@@ -19,7 +19,7 @@ config/features=PackedStringArray("4.4", "Mobile")
 boot_splash/bg_color=Color(0, 0, 0, 1)
 config/icon="res://素材/logo.png"
 boot_splash/fullsize=false
-boot_splash/image="res://素材/logo.png"
+boot_splash/image="uid://cq2748ix5la14"
 
 [audio]
 
@@ -87,5 +87,10 @@ pointing/android/enable_pan_and_scale_gestures=true
 
 [rendering]
 
+occlusion_culling/bvh_build_quality=1
+textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+textures/lossless_compression/force_png=true
+textures/default_filters/anisotropic_filtering_level=0
+textures/decals/filter=1

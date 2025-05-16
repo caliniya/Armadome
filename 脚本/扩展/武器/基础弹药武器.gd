@@ -18,8 +18,8 @@ var 短路耗能 : float = 50.0
 var 离线延迟 : float = 4.0
 var 电场强度 : float =1.0
 
-var 武器贴图路径 : String
-var 武器主贴图 : Script
+var 武器贴图路径 : String = "res://素材/实体/武器/一类/微风.png"
+var 武器主贴图 : Sprite2D
 
 var 当前弹仓容量 : float
 var 当前电容水平 : float
@@ -48,6 +48,7 @@ func 初始化武器(阵营 : String , 搭载平台 : Node , 弹仓量 : float ,
 	当前电容水平 = 电容水平
 	初始化射程区域()
 	初始化索敌区域()
+	初始化主贴图()
 	
 
 func _physics_process(delta: float) -> void:
@@ -81,6 +82,11 @@ func 初始化射程区域() -> void:
 	射程形状.shape = CircleShape2D.new()
 	射程形状.shape.radius = 有效射程
 	射程区域.add_child(射程形状)
+
+func 初始化主贴图() -> void:
+	武器主贴图 = Sprite2D.new()
+	武器主贴图.texture = load(武器贴图路径)
+	add_child(武器主贴图)
 
 func 充能() -> void:
 	pass

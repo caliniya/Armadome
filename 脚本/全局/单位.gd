@@ -1,6 +1,7 @@
 extends Node
 
-var 单位ID表 : Dictionary
+func 初始化单位() -> void:
+	pass
 
 func 伤害(伤害量 : float , 攻击来源 : Node , 攻击目标 : Node) ->void :
 	if 攻击目标.当前护盾容量 > 0:
@@ -21,7 +22,6 @@ func 护甲受击(伤害 : float , 攻击来源 : Node , 攻击目标 : Node) ->
 
 func 核心受击(伤害 : float , 攻击目标 : Node) -> void:
 	攻击目标.当前核心容量 -= 伤害
-
 
 func 死亡检查(伤害量 : float , 检查单位 : Node) ->bool :
 	if 检查单位.当前核心容量 - 伤害量 <= 0:
@@ -58,4 +58,9 @@ func  卸载货物(货物ID : String , 卸载单位 : Node) ->void:
 		print(str(卸载单位) + "卸载货物出错，不存在指定货物")
 
 func 选中改变(目标 : Node) -> void:
-	目标.选中改变()
+	if 目标.选中 == true:
+		目标.选中 = false
+	elif 目标.选中 == false:
+		目标.选中 = true
+	else :
+		pass
