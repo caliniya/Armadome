@@ -28,3 +28,6 @@ func _input(event: InputEvent) -> void:
 		
 		# 网格选择逻辑
 		点击世界坐标 = get_local_mouse_position()
+
+func 初始化星区(加载星区ID : int) -> void:
+	pass

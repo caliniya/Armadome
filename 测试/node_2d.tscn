@@ -5,9 +5,12 @@
 
 [node name="Node2D" type="Node2D"]
 
-[node name="风吹3" parent="." instance=ExtResource("1_vw0g6")]
-position = Vector2(671, -304)
-"自身阵营" = "红队"
-
 [node name="相机" parent="." instance=ExtResource("2_qxylp")]
 position = Vector2(734, -256)
+
+[node name="风吹" parent="." instance=ExtResource("1_vw0g6")]
+position = Vector2(564, -267)
+"自身阵营" = "封锁"
+
+[node name="风吹2" parent="." instance=ExtResource("1_vw0g6")]
+position = Vector2(780, -311)

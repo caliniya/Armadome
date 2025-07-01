@@ -19,6 +19,7 @@ config/features=PackedStringArray("4.4", "Mobile")
 boot_splash/bg_color=Color(0, 0, 0, 1)
 config/icon="res://素材/logo.png"
 boot_splash/fullsize=false
+boot_splash/use_filter=false
 boot_splash/image="uid://cq2748ix5la14"
 
 [audio]
@@ -36,7 +37,6 @@ InputManager="*res://脚本/插件/输入管理器/InputManager.gd"
 
 [debug]
 
-settings/stdout/print_fps=true
 shapes/collision/shape_color=Color(0, 0.6, 0.701961, 0.145098)
 
 [display]
@@ -59,12 +59,17 @@ export/convert_text_resources_to_binary=false
 
 [gui]
 
-theme/custom_font="uid://c3y3xd1nd6w6t"
+theme/default_theme_scale=4.0
+theme/custom="uid://hxeeb5sr73h6"
+theme/custom_font="uid://cpikboclyul3m"
 theme/default_font_antialiasing=2
 theme/default_font_subpixel_positioning=2
 theme/default_font_multichannel_signed_distance_field=true
 theme/default_font_generate_mipmaps=true
 theme/lcd_subpixel_layout=3
+theme/extensions/debug_utils="0"
+theme/enabled=false
+theme/stdout/print_fps=true
 
 [input]
 
@@ -94,3 +99,7 @@ renderer/rendering_method.mobile="gl_compatibility"
 textures/lossless_compression/force_png=true
 textures/default_filters/anisotropic_filtering_level=0
 textures/decals/filter=1
+
+[xr]
+
+openxr/extensions/debug_utils=1

@@ -22,6 +22,8 @@ func 护甲受击(伤害 : float , 攻击来源 : Node , 攻击目标 : Node) ->
 
 func 核心受击(伤害 : float , 攻击目标 : Node) -> void:
 	攻击目标.当前核心容量 -= 伤害
+	if 死亡检查(伤害 , 攻击目标):
+		单位死亡(攻击目标)
 
 func 死亡检查(伤害量 : float , 检查单位 : Node) ->bool :
 	if 检查单位.当前核心容量 - 伤害量 <= 0:
@@ -64,3 +66,17 @@ func 选中改变(目标 : Node) -> void:
 		目标.选中 = true
 	else :
 		pass
+
+func 武器目标阵营检查(目标 : Node , 来源武器 : Node) -> bool:
+	if 目标.get_parent().自身阵营 != 来源武器.武器隶属阵营: 
+		return true
+	elif 目标.get_parent().自身阵营 == 来源武器.武器隶属阵营:
+		return false
+	return false
+
+func 雷达扫描目标阵营检查(目标 : Node , 来源单位 : Node) -> bool:
+	if 目标.get_parent().自身阵营 != 来源单位.自身阵营 :
+		return true
+	elif 目标.get_parent().自身阵营 == 来源单位.自身阵营:
+		return false
+	return false

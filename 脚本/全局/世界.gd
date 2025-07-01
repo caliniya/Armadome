@@ -1,13 +1,7 @@
 extends Node
 
-var 世界数据路径 : String = "res://存储/世界/星区列表.json"
-var 星区文件夹路径 : String = "res://存储/世界/星区/"
 var 单位ID表 : Dictionary
-var 单位ID表路径 : String = "res://存储/世界/单位ID表.json"
 var 单位坐标ID表 : Dictionary
-var 单位坐标ID表路径 : String = "user://存储/世界/单位坐标.json"
-var 单位数据路径 : String = "res://存储/世界/单位/星区"
-var 跳跃单位信息路径 : String = "res://存储/世界/单位/跳跃"
 
 var 初始世界数据 : Dictionary = {
 	"星区" : {
@@ -16,8 +10,15 @@ var 初始世界数据 : Dictionary = {
 			"基地" : true,
 			"坐标" : [0 , 0]
 			},
+		"1,0" : {
+			"已生成" : true,
+			"基地" : false,
+			"坐标" : [1 , 0]
+			},
 		}
 	}
+	
+	
 
 var 空星区世界 : Dictionary = {
 	"空间站" : {
@@ -33,39 +34,41 @@ var 空星区世界 : Dictionary = {
 }
 
 var 测试单位ID表 : Dictionary = {
-	00000000 : ["风吹",0,0]
+	0000000000 : ["风吹",0,0]
 }
 
 var 测试单位坐标ID表 : Dictionary = {
-	[0,0] : 00000000
+	[0,0] : [0000000000]
 }
 
 var 单位数据 : Dictionary = {
 	
 }
 
-var 测试ID列表 : Array = [00000000]
+var 测试ID列表 : Array = [0000000000]
 
 var 单位ID序列表 : Array
+
 var 世界数据 : Dictionary
 var 星区列表 : Array
+var 星区ID列表 : Array
 var 星区唯一ID表 : Dictionary
 var 星区唯一ID表反向映射 : Dictionary
 
-func _ready() -> void:
-	世界数据路径 = "res://存储/世界/星区列表.json"
-
 func 读取世界() -> void:
+	读取世界数据()
 	生成星区列表()
 	生成唯一ID表()
+	从文件读取单位ID数据()
+	生成星区ID列表()
+	#print(str(从ID定位坐标(0000000000)))
+	print(星区ID列表)
 
 func 重置世界() -> void:
-	方法.删除非空文件夹( "res://存储/世界")
-	方法.覆写文件(世界数据路径,初始世界数据)
-	生成星区列表()
+	方法.删除非空文件夹(变量.文件路径表["世界数据路径"])
+	方法.覆写文件(变量.文件路径表["星区列表路径"],初始世界数据)
 	重置星区文件()
 	重置单位ID数据文件()
-	生成唯一ID表()
 
 func 计算星区(世界坐标 : Vector2 , 网格单元大小 : Vector2) -> Vector2i :
 	return Vector2i(floori(世界坐标.x / 网格单元大小.x),floori(世界坐标.y / 网格单元大小.y))
@@ -120,31 +123,36 @@ func 计算唯一ID(x : int , y : int) -> int:
 	return (((k1 + k2) * (k1 + k2 + 1)) / 2) + k2
 	#康托尔配对函数
 
+func 读取世界数据() -> void:
+	if FileAccess.file_exists(变量.文件路径表["星区列表路径"]) :
+		世界数据 = 方法.读取文件(变量.文件路径表["星区列表路径"] , "json")
+
 func 生成星区列表() -> void:
-	if FileAccess.file_exists(世界数据路径) :
-		世界数据 = 方法.读取文件(世界数据路径 , "json")
 	for 星区ID in 世界数据["星区"]:
 		星区列表.append(星区ID)
 		var 星区数据 = 世界数据["星区"][星区ID]
 
-func 重置星区文件() -> void:
-	for 星区 in 星区列表:
-		方法.覆写文件(星区文件夹路径 + 星区 + ".json" , 空星区世界)
+func 生成星区ID列表() -> void:
+	for ID in 星区列表:
+		星区ID列表.append(星区唯一ID表[ID])
 
+func 重置星区文件() -> void:
+	for 星区 in 初始世界数据["星区"]:
+		方法.覆写文件(变量.文件路径表["星区文件夹路径"] + 星区 + ".json" , 空星区世界)
+	
 func 重置单位ID数据文件() -> void:
-	方法.删除非空文件夹(单位数据路径)
-	方法.删除非空文件夹(跳跃单位信息路径)
-	方法.覆写文件(单位ID表路径 , 测试单位ID表)
-	方法.覆写文件(单位坐标ID表路径 , 测试单位坐标ID表)
+	方法.删除非空文件夹(变量.文件路径表["单位数据路径"])
+	方法.覆写文件(变量.文件路径表["单位ID表路径"] , 测试单位ID表)
+	方法.覆写文件(变量.文件路径表["单位坐标ID表路径"] , 测试单位坐标ID表)
 
 func 从文件读取单位ID数据() -> void:
-	单位ID表 = 方法.读取文件(单位ID表路径 , "json")
+	单位ID表 = 方法.读取文件(变量.文件路径表["单位ID表路径"] , "json")
 
 func 从ID定位坐标(ID : int) ->Array:
-	return [单位ID表[ID][1],单位ID表[ID][2]]
+	return [int(单位ID表[str(ID)][1]),int(单位ID表[str(ID)][2])]
 
 func 从ID读取单位(ID : int) -> Variant:
-	return 方法.读取文件(单位数据路径 + 从ID定位坐标(ID)[0] + "," + 从ID定位坐标(ID)[1] + ".json" , "json")
+	return 方法.读取文件(变量.文件路径表["单位数据路径"] + 从ID定位坐标(ID)[0] + "," + 从ID定位坐标(ID)[1] + ".json" , "json")
 
 func 缓存单位数据(缓存单位 : Node) -> void:
 	单位数据[缓存单位.内部唯一ID] = {
@@ -156,4 +164,6 @@ func 缓存单位数据(缓存单位 : Node) -> void:
 		"弹药库" : 缓存单位.当前弹药库容量,
 		"武器" : 缓存单位.武器,
 	}
-	
+
+func 保存单位数据() -> void:
+	pass

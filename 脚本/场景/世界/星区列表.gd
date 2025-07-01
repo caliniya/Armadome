@@ -1,18 +1,14 @@
-extends MenuButton
+extends Control
 
-var 展开 : bool = true
+var 世界节点 : Node2D
 
 func _ready() -> void:
-	get_popup().hide_on_item_selection = false
-	for 星区 in 世界.星区列表:
-		var ID = 世界.星区唯一ID表.get(星区)
-		get_popup().add_item("星区" + str(ID) , ID)
-		get_popup().add_theme_font_size_override("font_size" , 40)
+	世界节点 = get_parent().get_parent()
+	
 
-func 按下() -> void:
-	展开 = !展开
-	if 展开 == false:
-		set_pressed(true)
-		show_popup()
-		return
-	set_pressed(false)
+func 按钮按下() -> void:
+	if self.visible == true:
+		self.visible = false
+	else :
+		self.visible = true
+	世界节点.星区列表切换()

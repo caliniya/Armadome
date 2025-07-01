@@ -29,9 +29,37 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="ID显示" type="Label" parent="UI/Control"]
+[node name="ID蒙版" type="Panel" parent="UI/Control"]
+layout_mode = 0
+offset_right = 400.0
+offset_bottom = 75.0
+mouse_filter = 2
+
+[node name="ID显示" type="Label" parent="UI/Control/ID蒙版"]
 layout_mode = 1
-offset_right = 1.0
-offset_bottom = 22.3333
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+text = "星区:星区唯一ID"
+
+[node name="第二蒙版" type="Panel" parent="UI/Control"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_top = 70.0
+offset_right = 400.0
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Tree" type="Tree" parent="UI/Control/第二蒙版"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="相机" parent="." instance=ExtResource("4_j018m")]

@@ -24,15 +24,20 @@ extends Node2D
 # ================== 运行时变量 ==================
 var 上一次相机位置: Vector2
 var 上一次缩放: Vector2
-var 星区列表节点 : Node
 var 点击坐标 : Vector2
 var 点击世界坐标 : Vector2
 var 当前选中网格 : Vector2i
 var 鼠标网格 : Vector2i
 
+var 星区列表已展开 : bool = false
+var 星区列表容器 : VBoxContainer
+
+var 输入截断 : bool = false
+
 # ================== 引擎回调 ==================
 func _ready() -> void:
-	星区列表节点 = get_node("UI/Control/MenuButton")
+	星区列表容器 = get_node("UI/Control2/滚动条容器/竖向容器")
+	写入星区列表()
 
 func _process(_delta):
 	# 相机变化检测（触发重绘）
@@ -157,24 +162,46 @@ func 绘制虚线(起点: Vector2, 终点: Vector2, color: Color, width: float, 
 
 # ================== 输入处理 ==================
 func _input(event: InputEvent) -> void:
-	# 鼠标交互处理
-	if event is InputEventSingleScreenDrag or InputEventSingleScreenTap:
-		鼠标网格 = 世界.计算星区(get_local_mouse_position(), 网格单元大小) 
-		queue_redraw()
-
 	# 点击事件处理
-	if event is InputEventSingleScreenTap:
-		点击坐标 = event.position
+	if event is InputEventSingleScreenTap or InputEventSingleScreenDrag:
+		if event is InputEventSingleScreenTap:
+			点击坐标 = event.position
+			
+			输入截断 = false
+			if 星区列表已展开 and 点击坐标.x < 250:
+				输入截断 = true
+				return
+				print(星区列表已展开)
 		
+			if 点击坐标.x < 250 and 点击坐标.y < 130:
+	
+				输入截断 = true
+				return
+			
 		# 网格选择逻辑
-		点击世界坐标 = get_local_mouse_position()
-		当前选中网格 = 世界.计算星区(点击世界坐标, 网格单元大小)
-		print("选中网格：", 当前选中网格)
+			点击世界坐标 = get_local_mouse_position()
+			当前选中网格 = 世界.计算星区(点击世界坐标, 网格单元大小)
+			print("选中网格：", 当前选中网格)
 		
 		# 星区状态检查
-		if 世界.存在星区(世界.计算星区ID(当前选中网格)):
-			print("星区已部署")
-		else:
-			print("星区未部署")
-		
-		queue_redraw()
+			if 世界.存在星区(世界.计算星区ID(当前选中网格)):
+				pass
+			鼠标网格 = 世界.计算星区(get_local_mouse_position(), 网格单元大小) 
+			queue_redraw()
+	# 鼠标交互处理
+		if event is InputEventSingleScreenDrag:
+			if 输入截断 == true:
+				return
+			鼠标网格 = 世界.计算星区(get_local_mouse_position(), 网格单元大小) 
+			queue_redraw()
+
+func 星区列表切换() -> void:
+	if 星区列表已展开 == true:
+		星区列表已展开 = false
+	else:
+		星区列表已展开 = true
+
+func 写入星区列表() -> void:
+	var 星区ID列表 : Array = 世界.星区ID列表
+	for 星区ID in 星区ID列表:
+		星区列表容器.add_child(列表按钮.new(星区ID , 250.0 , 100.0))
